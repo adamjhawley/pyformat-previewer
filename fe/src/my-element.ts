@@ -17,7 +17,8 @@ export class SearchBar extends LitElement {
   _output: string = "";
 
   sendRequest () {
-    var url = "http://localhost:8000/format"
+    const host = "https://pyformat-previewer.vercel.app/"
+    var url = `${host}/format`
       const val = this._valForm.value
       const format = this._formatForm.value
       if (!(val && format)){
