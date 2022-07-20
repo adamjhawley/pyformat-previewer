@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # vim: ts=4 sw=4 tw=100 et ai si
 #
-# Copyright (C) 2019-2022 Intel Corporation
-# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2022 Adam Hawley
+# SPDX-License-Identifier: GPL-3.0-only
 #
 # Author: Adam Hawley
 
