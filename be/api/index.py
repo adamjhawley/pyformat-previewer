@@ -28,11 +28,11 @@ app.add_middleware(
 )
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"Hello": "World"}
 
 @app.get("/format")
-def read_item(value: float, format: str):
+async def read_item(value: float, format: str):
     print(value)
     print(format)
     return f"{value:{format}}"
