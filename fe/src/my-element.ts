@@ -22,12 +22,12 @@ export class SearchBar extends LitElement {
   sendRequest () {
     const host = "https://pyformat-previewer.vercel.app/"
     var url = `${host}/format`
-      const val = this._valForm.value
-      const format = this._formatForm.value
-      if (!(val && format)){
-        return
-      }
-      url = `${url}?value=${val}&format=${format}`
+    const val = this._valForm.value
+    const format = this._formatForm.value
+    if (!(val && format)){
+      return
+    }
+    url = `${url}?value=${val}&format=${format}`
     fetch(url, {method: "GET", headers: {"Accept": "application/json"}})
       .then((response) => response.json())
       .then((json) => {
@@ -49,12 +49,14 @@ export class SearchBar extends LitElement {
           <sl-input @sl-input=${() => {this.sendRequest()}} id="format-form" name="format" filled></sl-input>
           <p>}"</p>
       </form>
+      ${this._error
+        ?html`<div class="error"><pre>Error: ${this._error}</pre></div>`
+        :html``
+      }
       ${this._output
         ?html`
-          <p>Formatted value:</p>
-          <pre>
-            ${this._output}
-          </pre>
+          <p class="formatted-label">Formatted value:</p>
+          <pre>${this._output}</pre>
         `
         :html``
       }
@@ -67,6 +69,23 @@ export class SearchBar extends LitElement {
       flex-direction: row;
       justify-content: center;
       align-items: center;
+    }
+
+    .error {
+      border-style:solid;
+      border-radius:5px;
+      border-color: red;
+      padding-left:5px;
+      padding-right:5px;
+    }
+
+    .formatted-label {
+      margin-bottom: 0px;
+    }
+
+    pre {
+      margin: 0px;
+      text-align: center;
     }
 
     sl-input {
