@@ -8,10 +8,10 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 export class SearchBar extends LitElement {
   
   @query('#val-form')
-  _valForm
+  _valForm: any
 
   @query('#format-form')
-  _formatForm
+  _formatForm: any
 
   @state()
   _output: string = "";
