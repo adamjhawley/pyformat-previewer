@@ -33,6 +33,4 @@ async def read_root():
 
 @app.get("/format")
 async def read_item(value: float, format: str):
-    print(value)
-    print(format)
     return f"{value:{format}}"
