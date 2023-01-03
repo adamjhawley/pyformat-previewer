@@ -33,4 +33,9 @@ async def read_root():
 
 @app.get("/format")
 async def read_item(value: float, format: str):
-    return f"{value:{format}}"
+    try:
+        formatted_value = f"{value:{format}}"
+    except ValueError as err:
+        return {"formatted": "", "error": str(err)}
+
+    return {"formatted": formatted_value, "error": ""}

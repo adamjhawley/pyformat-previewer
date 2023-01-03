@@ -16,6 +16,9 @@ export class SearchBar extends LitElement {
   @state()
   _output: string = "";
 
+  @state()
+  _error: string = "";
+
   sendRequest () {
     const host = "https://pyformat-previewer.vercel.app/"
     var url = `${host}/format`
@@ -24,11 +27,17 @@ export class SearchBar extends LitElement {
       if (!(val && format)){
         return
       }
-      var xmlHttp = new XMLHttpRequest()
       url = `${url}?value=${val}&format=${format}`
-      xmlHttp.open("GET", url, false)
-      xmlHttp.send(null)
-      this._output = xmlHttp.responseText
+    fetch(url, {method: "GET", headers: {"Accept": "application/json"}})
+      .then((response) => response.json())
+      .then((json) => {
+        this._output = json["formatted"]
+        if (json["error"]) {
+          this._error = json["error"]
+        } else {
+          this._error = ""
+        }
+      })
   }
 
   render () {
