@@ -20,7 +20,7 @@ export class SearchBar extends LitElement {
   _error: string = "";
 
   sendRequest () {
-    const host = "https://pyformat-previewer.vercel.app/"
+    const host = "https://pyformat-previewer.vercel.app"
     var url = `${host}/format`
     const val = this._valForm.value
     const format = this._formatForm.value
