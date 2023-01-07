@@ -5,7 +5,7 @@ import {query} from 'lit/decorators/query.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 
 @customElement('pyf-page')
-export class SearchBar extends LitElement {
+export class PyformatPage extends LitElement {
   
   @query('#val-form')
   _valForm: any
@@ -96,6 +96,6 @@ export class SearchBar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'pyf-page': SearchBar
+    'pyf-page': PyformatPage
   }
 }
