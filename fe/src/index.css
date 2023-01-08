@@ -29,13 +29,13 @@ a:hover {
   text-align: center;
 }
 
-body {
+.centre-box {
   margin: 0;
   display: flex;
   place-items: center;
   justify-content: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 @media (prefers-color-scheme: light) {
