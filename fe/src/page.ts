@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import {query} from 'lit/decorators/query.js';
 
 import '@shoelace-style/shoelace/dist/components/input/input.js';
@@ -18,6 +18,14 @@ export class PyformatPage extends LitElement {
 
   @state()
   _error: string = "";
+
+  @property()
+  _typingTimer: number | undefined
+
+  inputHandler () {
+    clearTimeout(this._typingTimer)
+    this._typingTimer = setTimeout(() => {this.sendRequest()}, 250)
+  }
 
   sendRequest () {
     const host = "https://pyformat-previewer.vercel.app"
@@ -44,9 +52,9 @@ export class PyformatPage extends LitElement {
     return html`
       <form>
           <p>f"{</p>
-          <sl-input @sl-input=${() => {this.sendRequest()}} id="val-form" name="val" filled></sl-input>
+          <sl-input @sl-input=${() => {this.inputHandler()}} id="val-form" name="val" filled></sl-input>
           <p>:</p>
-          <sl-input @sl-input=${() => {this.sendRequest()}} id="format-form" name="format" filled></sl-input>
+          <sl-input @sl-input=${() => {this.inputHandler()}} id="format-form" name="format" filled></sl-input>
           <p>}"</p>
       </form>
       ${this._error
