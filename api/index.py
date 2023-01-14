@@ -8,7 +8,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from typing import Union
 
 origins = [
     "http://localhost",
@@ -32,7 +32,7 @@ async def read_root():
     return {"Hello": "World"}
 
 @app.get("/format")
-async def read_item(value: float, format: str):
+async def read_item(value: Union[str,float], format: str):
     try:
         formatted_value = f"{value:{format}}"
     except ValueError as err:
